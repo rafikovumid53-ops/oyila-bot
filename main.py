@@ -190,5 +190,5 @@ def _keep():
     HTTPServer(("0.0.0.0", port), _H).serve_forever()
 if __name__ == "__main__":
     print("Oyila bot ishga tushdi...")
-    threading.Thread(target=_keep, daemon=True).start()`
+    threading.Thread(target=_keep, daemon=True).start()
     bot.infinity_polling()
