@@ -1,5 +1,6 @@
 import threading
-from http.server import BaseHTTPRequestHandler, HTTPServer import os
+from http.server import BaseHTTPRequestHandler, HTTPServer 
+import os
 import telebot
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 
