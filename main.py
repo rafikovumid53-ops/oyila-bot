@@ -1,4 +1,5 @@
-import os
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer import os
 import telebot
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 
@@ -175,6 +176,18 @@ def steps(msg):
         users[uid]["step"] = "photo"
         bot.send_message(msg.chat.id, "Endi 1 ta rasmingizni yuboring")
 
+class _H(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"OK")
+    def log_message(self, *a):
+        pass
+
+def _keep():
+    port = int(os.environ.get("PORT", 10000))
+    HTTPServer(("0.0.0.0", port), _H).serve_forever()
 if __name__ == "__main__":
     print("Oyila bot ishga tushdi...")
+    threading.Thread(target=_keep, daemon=True).start()`
     bot.infinity_polling()
